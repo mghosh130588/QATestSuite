@@ -1,5 +1,6 @@
 package eshop.TestAutomation.TestComponents;
 
+import DataFiles.DataReader;
 import PageObject.BasePages.CatalogPage;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -30,9 +31,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Properties;
 
-public class BaseTest {
+public class BaseTest extends DataReader {
    public WebDriver driver;
     public Properties prop;
+
     public CatalogPage catalogPage;
     public static Logger log = LogManager.getLogger(BaseTest.class.getName());
     public WebDriver initializeDriver() throws IOException {
@@ -96,7 +98,7 @@ public class BaseTest {
         return cp;
     }*/
 
-    @AfterMethod
+   // @AfterMethod
     public void quitBrowser(){
         driver.quit();
     }
@@ -105,7 +107,7 @@ public class BaseTest {
         driver =initializeDriver();
     }
 
-    @BeforeMethod
+    //@BeforeMethod
     public void loadUrl() throws IOException {
 
         setUpBrowser();

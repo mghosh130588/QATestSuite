@@ -4,6 +4,7 @@ import PageObject.BasePages.*;
 import eshop.TestAutomation.TestComponents.BaseTest;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.json.simple.parser.ParseException;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
@@ -74,7 +75,23 @@ public class SubmitOrderTest extends BaseTest {
     @DataProvider
     public Object[][] getTestData() throws IOException {
        List<HashMap<String,String>> data = getJsonToMap(System.getProperty("user.dir")+"\\src\\main\\java\\DataFiles\\SubmitOrder.json");
-       return new Object[][] {{data.get(0)}};
+       int nosize = data.size();
+      Object[][] arr= new Object[nosize][1];
+      for(int i= 0;i<nosize;i++)
+          arr[i][0] = data.get(i);
+      return arr;
+
+    }
+
+    @DataProvider
+    public String[][] checkjsondatafiile() throws IOException, ParseException {
+      String[][] arr = readJson(".//src//main//java//DataFiles//SubmitOrder.json");
+      return arr;
+    }
+
+    @Test(dataProvider ="checkjsondatafiile")
+    public void chdckmethod(String username, String password, String product){
+        System.out.println(username + password + product);
 
     }
 

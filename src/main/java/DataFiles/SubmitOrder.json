@@ -3,5 +3,20 @@
     "email" :"demouser@microsoft.com",
      "password":"Pass@word1",
     "product": "Roslyn Red Sheet"
+  },
+  {
+    "email" :"demouser@microsoft.com",
+    "password":"Pass@word1",
+    "product": "Roslyn Red Sheet"
+  },
+  {
+    "email" :"demouser@microsoft.com",
+    "password":"Pass@word1",
+    "product": "Roslyn Red Sheet"
+  },
+  {
+    "email" :"demouser@microsoft.com",
+    "password":"Pass@word1",
+    "product": "Sheet"
   }
 ]
