@@ -98,7 +98,7 @@ public class BaseTest extends DataReader {
         return cp;
     }*/
 
-   // @AfterMethod
+   @AfterMethod
     public void quitBrowser(){
         driver.quit();
     }
@@ -107,7 +107,7 @@ public class BaseTest extends DataReader {
         driver =initializeDriver();
     }
 
-    //@BeforeMethod
+    @BeforeMethod
     public void loadUrl() throws IOException {
 
         setUpBrowser();
