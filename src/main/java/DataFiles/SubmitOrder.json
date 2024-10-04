@@ -1,12 +1,12 @@
 [
   {
     "email" :"demouser@microsoft.com",
-     "password":"Pass@word1",
-    "product": "Roslyn Red Sheet"
+    "password":"Pass@word1",
+    "product": "Sheet"
   },
   {
     "email" :"demouser@microsoft.com",
     "password":"Pass@word1",
-    "product": "Sheet"
+    "product": "Prism White T-Shirt"
   }
 ]

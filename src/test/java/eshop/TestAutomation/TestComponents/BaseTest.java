@@ -1,10 +1,8 @@
 package eshop.TestAutomation.TestComponents;
 
-import DataFiles.DataReader;
 import PageObject.BasePages.CatalogPage;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import eshop.TestAutomation.Test.loginTest;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.LogManager;
@@ -119,14 +117,14 @@ public class BaseTest {
         log.info("url is opened");
     }
 
-    public String getScreenShotPath(String testCaseName,WebDriver driver) throws IOException
+    public void getScreenShotPath(String testCaseName, WebDriver driver) throws IOException
     {
         TakesScreenshot ts=(TakesScreenshot) driver;
         File source =ts.getScreenshotAs(OutputType.FILE);
-        File file = new File(System.getProperty("user.dir")+"/screenshot/"+testCaseName+".png");
+        File file = new File(System.getProperty("user.dir")+"\\reports\\"+testCaseName+".png");
         //String destinationFile = System.getProperty("user.dir")+"\\reports\\"+testCaseName+".png";
         FileUtils.copyFile(source,file);
-        return System.getProperty("user.dir")+"/screenshot/"+testCaseName+".png";
+       //return System.getProperty("user.dir")+"\\screenshot\\"+testCaseName+".png";
 
 
     }

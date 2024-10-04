@@ -3,6 +3,7 @@ package eshop.TestAutomation.TestComponents;
 import Resources.ExtentReporterNG;
 import com.aventstack.extentreports.ExtentReports;
 import com.aventstack.extentreports.ExtentTest;
+import com.aventstack.extentreports.MediaEntityBuilder;
 import com.aventstack.extentreports.Status;
 import org.openqa.selenium.WebDriver;
 import org.testng.ITestContext;
@@ -32,7 +33,9 @@ public class Listeners extends BaseTest implements ITestListener {
 
     @Override
     public void onTestFailure(ITestResult result) {
-        extentTest.get().fail(result.getThrowable());
+        String Screenshotpath = "./reports/";
+        String failedmethod = result.getMethod().getMethodName();
+        //extentTest.get().fail(result.getThrowable());
         //WebDriver driver =null;
 
         try {
@@ -42,14 +45,16 @@ public class Listeners extends BaseTest implements ITestListener {
         }
 
         try {
-
-            extentTest.get().addScreenCaptureFromPath(getScreenShotPath(result.getMethod().getMethodName(), driver));
-                   // .addScreenCaptureFromPath(filepath, result.getMethod().getMethodName());
-
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
+            getScreenShotPath(failedmethod,driver);
+        } catch (Exception e) {
             e.printStackTrace();
         }
+            System.out.println(Screenshotpath +failedmethod+".png");
+            extentTest.get().fail(result.getThrowable());
+            extentTest.get().fail(MediaEntityBuilder.createScreenCaptureFromPath(failedmethod+".png").build());
+            log.warn("The test case faile" +failedmethod);
+                   // .addScreenCaptureFromPath(filepath, result.getMethod().getMethodName());
+
     }
 
     @Override
