@@ -31,7 +31,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Properties;
 
-public class BaseTest extends DataReader {
+public class BaseTest {
    public WebDriver driver;
     public Properties prop;
 
@@ -98,7 +98,7 @@ public class BaseTest extends DataReader {
         return cp;
     }*/
 
-   @AfterMethod
+   @AfterMethod (alwaysRun = true)
     public void quitBrowser(){
         driver.quit();
     }
@@ -107,7 +107,7 @@ public class BaseTest extends DataReader {
         driver =initializeDriver();
     }
 
-    @BeforeMethod
+    @BeforeMethod (alwaysRun = true)
     public void loadUrl() throws IOException {
 
         setUpBrowser();
@@ -123,9 +123,10 @@ public class BaseTest extends DataReader {
     {
         TakesScreenshot ts=(TakesScreenshot) driver;
         File source =ts.getScreenshotAs(OutputType.FILE);
-        String destinationFile = System.getProperty("user.dir")+"\\reports\\"+testCaseName+".png";
-        FileUtils.copyFile(source,new File(destinationFile));
-        return destinationFile;
+        File file = new File(System.getProperty("user.dir")+"/screenshot/"+testCaseName+".png");
+        //String destinationFile = System.getProperty("user.dir")+"\\reports\\"+testCaseName+".png";
+        FileUtils.copyFile(source,file);
+        return System.getProperty("user.dir")+"/screenshot/"+testCaseName+".png";
 
 
     }

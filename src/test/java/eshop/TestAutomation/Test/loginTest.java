@@ -13,7 +13,8 @@ import java.util.concurrent.TimeUnit;
 public class loginTest extends BaseTest {
     LogInPage logInPage;
     public static Logger log = LogManager.getLogger(loginTest.class.getName());
-    @Test
+
+    @Test (groups = {"smoke"})
     public void verifyLogin(){
         String password = prop.getProperty("password");
         String email = prop.getProperty("email");
@@ -26,7 +27,7 @@ public class loginTest extends BaseTest {
         logInPage.clickOnLogin();
         WebElement username = catalogPage.getIdentityUsername();
         String usernametext = username.getText();
-        Assert.assertEquals(usernametext,"demouser@microsoft.com");
+        Assert.assertEquals(usernametext,email);
         log.info("login successful");
     }
     @Test

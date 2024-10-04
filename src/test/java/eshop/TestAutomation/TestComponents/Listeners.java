@@ -33,17 +33,18 @@ public class Listeners extends BaseTest implements ITestListener {
     @Override
     public void onTestFailure(ITestResult result) {
         extentTest.get().fail(result.getThrowable());
-        WebDriver driver =null;
-        String testMethodName =result.getMethod().getMethodName();
+        //WebDriver driver =null;
 
         try {
-            driver =(WebDriver)result.getTestClass().getRealClass().getDeclaredField("driver").get(result.getInstance());
-        } catch(Exception e)
-        {
-
+            driver =(WebDriver)result.getTestClass().getRealClass().getField("driver").get(result.getInstance());
+        } catch(Exception e) {
+            e.printStackTrace();
         }
+
         try {
-            extentTest.get().addScreenCaptureFromPath(getScreenShotPath(testMethodName,driver), result.getMethod().getMethodName());
+
+            extentTest.get().addScreenCaptureFromPath(getScreenShotPath(result.getMethod().getMethodName(), driver));
+                   // .addScreenCaptureFromPath(filepath, result.getMethod().getMethodName());
 
         } catch (IOException e) {
             // TODO Auto-generated catch block

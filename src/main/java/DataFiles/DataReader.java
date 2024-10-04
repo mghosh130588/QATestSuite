@@ -40,11 +40,6 @@ public abstract class DataReader {
         }
         return dataobj;
 
-
-
-
-
-
     }
 
 }

@@ -4,11 +4,15 @@ import PageObject.BasePages.*;
 import eshop.TestAutomation.TestComponents.BaseTest;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 import org.testng.Assert;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
+import java.io.FileReader;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
@@ -47,7 +51,7 @@ public class SubmitOrderTest extends BaseTest {
         log.info("The items is removed from basket");
     }
 
-    @Test
+    @Test (groups =  {"smoke"})
     public void verifyCheckout() throws InterruptedException {
         String ProductName = prop.getProperty("product");
         String password = prop.getProperty("password");
@@ -92,6 +96,24 @@ public class SubmitOrderTest extends BaseTest {
     @Test(dataProvider ="checkjsondatafiile")
     public void chdckmethod(String username, String password, String product){
         System.out.println(username + password + product);
+
+    }
+
+    public String[][] readJson(String filepath) throws IOException, ParseException {
+        JSONParser parser =new JSONParser();
+        FileReader fr = new FileReader(filepath);
+        Object object = parser.parse(fr);
+        JSONArray jsondata = (JSONArray) object;
+        int number = jsondata.size();
+        String[][] dataobj = new String[number][3];
+        for (int i =0;i<number;i++)
+        {
+            JSONObject js = (JSONObject)jsondata.get(i);
+            dataobj[i][0] = (String)js.get("email");
+            dataobj[i][1] = (String)js.get("password");
+            dataobj[i][2] = (String)js.get("product");
+        }
+        return dataobj;
 
     }
 

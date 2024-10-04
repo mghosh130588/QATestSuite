@@ -1,0 +1,14 @@
+<suite name="Smoke Test Suite">
+    <listeners>
+        <listener class-name="eshop.TestAutomation.TestComponents.Listeners"/>
+    </listeners>
+    <test verbose="2" preserve-order="true" name="SubmitOrderTest">
+        <classes>
+            <class name="eshop.TestAutomation.Test.SubmitOrderTest">
+                <methods>
+                    <include name="verifyAddToBasket"/>
+                </methods>
+            </class>
+        </classes>
+    </test>
+</suite>
