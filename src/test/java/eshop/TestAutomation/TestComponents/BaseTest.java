@@ -3,7 +3,6 @@ package eshop.TestAutomation.TestComponents;
 import PageObject.BasePages.CatalogPage;
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import eshop.TestAutomation.Test.loginTest;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.apache.commons.io.FileUtils;
 import org.apache.logging.log4j.LogManager;
@@ -13,8 +12,11 @@ import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.chrome.ChromeOptions;
 import org.openqa.selenium.edge.EdgeDriver;
+import org.openqa.selenium.edge.EdgeOptions;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.firefox.FirefoxOptions;
 import org.testng.Assert;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
@@ -30,6 +32,7 @@ import java.util.Properties;
 public class BaseTest {
    public WebDriver driver;
     public Properties prop;
+
     public CatalogPage catalogPage;
     public static Logger log = LogManager.getLogger(BaseTest.class.getName());
     public WebDriver initializeDriver() throws IOException {
@@ -37,26 +40,38 @@ public class BaseTest {
         prop = new Properties();
         FileInputStream fis = new FileInputStream(System.getProperty("user.dir")+"\\src\\main\\java\\Resources\\GlobalData.properties");
         prop.load(fis);
-        String browsername = prop.getProperty("browser");
+        String browsername = System.getProperty("browser")!=null?System.getProperty("browser"):prop.getProperty("browser");
         switch (browsername) {
                 case "firefox":
                 log.info("Initial browser SetUp");
                 WebDriverManager.firefoxdriver().setup();
-                driver = new FirefoxDriver();
-                driver.manage().window().maximize();
+                FirefoxOptions option = new FirefoxOptions();
+                driver = new FirefoxDriver(option);
+                driver.manage().window().fullscreen();
                 log.info("Initial Browser has been SetUp");
                 break;
                 case "chrome":
                     System.out.println("Initial browser SetUp");
                     WebDriverManager.chromedriver().setup();
-                    driver = new ChromeDriver();
+                    ChromeOptions coption = new ChromeOptions();
+                    driver = new ChromeDriver(coption);
                     driver.manage().window().maximize();
                     log.info("Initial Browser has been SetUp");
                     break;
-                    case "edge":
+                case "chromeheadless":
+                System.out.println("Initial browser SetUp");
+                WebDriverManager.chromedriver().setup();
+                ChromeOptions choption = new ChromeOptions();
+                choption.setHeadless(true);
+                driver = new ChromeDriver(choption);
+                driver.manage().window().maximize();
+                log.info("Initial Browser has been SetUp");
+                break;
+                case "edge":
                 System.out.println("Initial browser SetUp");
                 WebDriverManager.edgedriver().setup();
-                driver = new EdgeDriver();
+                EdgeOptions eoption = new EdgeOptions();
+                driver = new EdgeDriver(eoption);
                 driver.manage().window().maximize();
                 log.info("Initial Browser has been SetUp");
                 break;
@@ -81,7 +96,7 @@ public class BaseTest {
         return cp;
     }*/
 
-    @AfterMethod
+   @AfterMethod (alwaysRun = true)
     public void quitBrowser(){
         driver.quit();
     }
@@ -90,7 +105,7 @@ public class BaseTest {
         driver =initializeDriver();
     }
 
-    @BeforeMethod
+    @BeforeMethod (alwaysRun = true)
     public void loadUrl() throws IOException {
 
         setUpBrowser();
@@ -102,13 +117,14 @@ public class BaseTest {
         log.info("url is opened");
     }
 
-    public String getScreenShotPath(String testCaseName,WebDriver driver) throws IOException
+    public void getScreenShotPath(String testCaseName, WebDriver driver) throws IOException
     {
         TakesScreenshot ts=(TakesScreenshot) driver;
         File source =ts.getScreenshotAs(OutputType.FILE);
-        String destinationFile = System.getProperty("user.dir")+"\\reports\\"+testCaseName+".png";
-        FileUtils.copyFile(source,new File(destinationFile));
-        return destinationFile;
+        File file = new File(System.getProperty("user.dir")+"\\reports\\"+testCaseName+".png");
+        //String destinationFile = System.getProperty("user.dir")+"\\reports\\"+testCaseName+".png";
+        FileUtils.copyFile(source,file);
+       //return System.getProperty("user.dir")+"\\screenshot\\"+testCaseName+".png";
 
 
     }

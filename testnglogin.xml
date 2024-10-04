@@ -1,0 +1,28 @@
+<suite name="Smoke Test Suite">
+    <groups>
+        <run>
+            <include name ="datarun"/>
+        </run>
+    </groups>
+    <listeners>
+        <listener class-name="eshop.TestAutomation.TestComponents.Listeners"/>
+    </listeners>
+    <test verbose="2" preserve-order="true" name="CatalogPageTest">
+        <classes>
+            <class name="eshop.TestAutomation.Test.CatalogPageTest">
+            </class>
+        </classes>
+    </test>
+    <test verbose="2" preserve-order="true" name="loginTest">
+        <classes>
+            <class name="eshop.TestAutomation.Test.loginTest">
+            </class>
+        </classes>
+    </test>
+    <test verbose="2" preserve-order="true" name="SubmitOrderTest">
+        <classes>
+            <class name="eshop.TestAutomation.Test.SubmitOrderTest">
+            </class>
+        </classes>
+    </test>
+</suite>

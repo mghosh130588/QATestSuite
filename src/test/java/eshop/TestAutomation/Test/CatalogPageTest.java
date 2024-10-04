@@ -7,7 +7,8 @@ import org.testng.annotations.Test;
 
 public class CatalogPageTest extends BaseTest {
     public static Logger log = LogManager.getLogger(CatalogPageTest.class.getName());
-    @Test
+
+    @Test (groups = {"smoke"})
     public void verifyCatalogListDisplayed(){
         int totalItems = catalogPage.getNumberOfItemsdisplayedinCatalog();
         if(totalItems == 0){
