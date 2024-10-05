@@ -1,7 +1,7 @@
 Feature: Login functionality
 
   Scenario: Verify that the user is able to login successfully
-    Given User opens  the landing page.
+    Given User opens  the landing page
     When User clicks on login button.
     And User enters the username and password.
     And User clicks on Log In.
