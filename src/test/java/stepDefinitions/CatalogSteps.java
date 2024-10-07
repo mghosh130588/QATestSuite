@@ -26,12 +26,13 @@ public class CatalogSteps {
 
     }
     @When("User is on landing page")
-    public void user_is_on_landing_page() {
+    public void user_is_on_landing_page() throws InterruptedException {
         // Write code here that turns the phrase above into concrete actions
         WebElement brandimage = driver.findElement(By.xpath("//img[@src ='/images/brand.png']"));
         Assert.assertTrue(brandimage.isDisplayed());
         System.out.println("User is on the landing page");
-        driver.quit();
+        Thread.sleep(5000);
+
 
     }
     @When("User verify the catalog page is listed")
