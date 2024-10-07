@@ -1,15 +1,17 @@
 Feature:  Checkout functionality
 
+@Smoke @Regression
   Scenario: Verify that the user is able to checkout a product from catalog
     Given User is logged in the application.
     When User finds the product from catalog
+    And User clicks on Add to Cart button
     And User is navigated to Basket page
     And User updates the number of Quantity
     And User clicks on CheckOut button
     Then User is navigated to Review page
     And User clicks on paynow button
     And User receives the confirmation message
-
+@DataProviderCheck @Regression
     Scenario Outline: Verify that the user is able to add multiple products in the basket
       Given User is logged in the application with "<Username>" and "<Password>"
       When User finds the product "<ProductName>" from catalog
