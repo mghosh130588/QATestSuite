@@ -1,7 +1,7 @@
 Feature: Catalog Page Test
 
 
-  @Smoke @Regression
+
 Scenario: Verify the user is able to retreive the catalog list
   Given User opens  the landing page
   When User is on landing page

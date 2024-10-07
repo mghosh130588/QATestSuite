@@ -5,6 +5,7 @@ import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 import io.github.bonigarcia.wdm.WebDriverManager;
 import org.openqa.selenium.*;
+import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
@@ -17,21 +18,21 @@ public class CatalogSteps {
     public WebDriver driver;
     @Given("User opens  the landing page")
     public void user_opens_the_landing_page() {
-        WebDriverManager.firefoxdriver().setup();
-        driver = new FirefoxDriver();
-        driver.manage().window().fullscreen();
+        WebDriverManager.chromedriver().setup();
+        driver = new ChromeDriver();
+        driver.manage().window().maximize();
         driver.get("http://localhost:5106/");
         System.out.println("User opened the Url");
 
 
     }
     @When("User is on landing page")
-    public void user_is_on_landing_page() throws InterruptedException {
+    public void user_is_on_landing_page(){
         // Write code here that turns the phrase above into concrete actions
         WebElement brandimage = driver.findElement(By.xpath("//img[@src ='/images/brand.png']"));
         Assert.assertTrue(brandimage.isDisplayed());
         System.out.println("User is on the landing page");
-        Thread.sleep(5000);
+        //driver.quit();
 
 
     }
