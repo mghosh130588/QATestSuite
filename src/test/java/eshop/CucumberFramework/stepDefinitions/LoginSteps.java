@@ -12,7 +12,7 @@ import java.util.concurrent.TimeUnit;
 public class LoginSteps {
 
 
-    public LogInPage lp;
+
     TestComponent tc;
 
     public LoginSteps(TestComponent tc) {
@@ -23,13 +23,13 @@ public class LoginSteps {
 
     @When("User clicks on Login Button")
     public void user_clicks_on_login_button() {
-        lp = tc.cp.clickloginButton();
+        tc.lp = tc.cp.clickloginButton();
         System.out.println("User has clicked on Login Button");
 
     }
     @When("User is navigated to Login Page")
     public void user_is_navigated_to_login_page() {
-        WebElement headerIcon =lp.getHeaderIcon();
+        WebElement headerIcon = tc.lp.getHeaderIcon();
         String headeertext = headerIcon.getText();
         Assert.assertEquals(headeertext,"Log in");
         System.out.println("User has been navigated to login Page");
@@ -37,14 +37,14 @@ public class LoginSteps {
     }
     @When("User enters email as {string} and password as {string}")
     public void user_enters_email_as_and_password_as(String Username, String password) {
-        lp.enterEmail(Username);
-        lp.enterPassword(password);
+        tc.lp.enterEmail(Username);
+        tc.lp.enterPassword(password);
         System.out.println("User entered Username and password");
 
     }
     @When("User clicks on Log In")
     public void user_clicks_on_log_in() {
-       lp.clickOnLogin();
+       tc.lp.clickOnLogin();
         System.out.println("User clicked on Login");
 
     }

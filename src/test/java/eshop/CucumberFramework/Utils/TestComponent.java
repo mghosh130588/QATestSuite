@@ -7,5 +7,6 @@ import org.openqa.selenium.WebDriver;
 public class TestComponent {
     public CatalogPage cp;
     public WebDriver driver;
+    public LogInPage lp;
 
 }
