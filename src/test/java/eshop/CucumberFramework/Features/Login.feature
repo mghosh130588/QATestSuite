@@ -12,4 +12,4 @@ Feature: Login and LogOut Functionality
       And User navigates to Logout menu
       And User clicks on Logout
       And User is logged out successfully
-      And User closes the browser.
+

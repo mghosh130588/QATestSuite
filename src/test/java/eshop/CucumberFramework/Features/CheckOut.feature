@@ -16,7 +16,7 @@ Feature: User is able to Add to basket and checkout product
       And User clicks on update button
       And User is navigated to update page
       And User gets the validation message
-      And User closes the browser.
+
 
 
       Examples:
@@ -39,7 +39,7 @@ Scenario: Verify that the user is able to add to cart and checkout for a product
   And User is navigated to the Review Page
   And User clicks on Paynow button
   And User gets the success message as "Thanks for your Order!" for placing the order
-  And User closes the browser.
+
 
 
 
