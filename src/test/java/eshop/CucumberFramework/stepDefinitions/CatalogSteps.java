@@ -2,6 +2,7 @@ package eshop.CucumberFramework.stepDefinitions;
 
 import PageObject.BasePages.CatalogPage;
 import PageObject.BasePages.LogInPage;
+import PageObject.BasePages.PageObjectManager;
 import eshop.CucumberFramework.Utils.ConfiguratorManager;
 import eshop.CucumberFramework.Utils.DriverManager;
 import eshop.CucumberFramework.Utils.TestComponent;
@@ -24,8 +25,8 @@ import java.util.concurrent.TimeUnit;
 
 public class CatalogSteps{
 
-    //public CatalogPage cp;
-    //public WebDriver driver;
+    public CatalogPage cp;
+    public WebDriver driver;
 
     TestComponent tc;
 
@@ -35,11 +36,12 @@ public class CatalogSteps{
 
     @Given("User opens  the landing page")
     public void user_opens_landing_page(){
-        tc.driver = new DriverManager().initilizeDriver();
+        //tc.driver = new DriverManager().initilizeDriver();
         tc.driver.manage().window().maximize();
         tc.driver.manage().timeouts().implicitlyWait(500,TimeUnit.MILLISECONDS);
-        tc.cp = new CatalogPage(tc.driver);
-        tc.cp.goToUrl(ConfiguratorManager.getConfiguration().getProperty("url"));
+        //tc.cp =new PageObjectManager(tc.driver).getCp();
+        tc.cp = tc.pm.getCp();
+       tc.cp.goToUrl(ConfiguratorManager.getConfiguration().getProperty("url"));
         System.out.println("Url is opened");
    }
 
