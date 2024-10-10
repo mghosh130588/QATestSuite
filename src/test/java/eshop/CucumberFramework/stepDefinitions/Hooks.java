@@ -5,7 +5,7 @@ import io.cucumber.java.After;
 
 public class Hooks {
 
-    TestComponent tc;
+    public TestComponent tc;
 
     public Hooks(TestComponent tc){
         this.tc = tc;
@@ -13,6 +13,6 @@ public class Hooks {
 
     @After
     public void teardown(){
-        tc.driver.manage();
+        tc.dm.initilizeDriver().quit();
     }
 }

@@ -10,7 +10,7 @@ public class TestComponent {
     public WebDriver driver;
     public LogInPage lp;
     public PageObjectManager pm;
-    DriverManager dm;
+    public DriverManager dm;
 
     public TestComponent() {
         dm = new DriverManager();
